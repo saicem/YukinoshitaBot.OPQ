@@ -2,11 +2,11 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System.Net.Http;
+using System.Text.Json.Serialization;
+
 namespace YukinoshitaBot.Data.OpqApi
 {
-    using System.Net.Http;
-    using System.Text.Json.Serialization;
-
     /// <summary>
     /// 用于发送消息的基类
     /// </summary>
@@ -88,7 +88,7 @@ namespace YukinoshitaBot.Data.OpqApi
         /// <param name="userQQ">目的QQ号</param>
         /// <param name="groupId">该用户所在群的群号</param>
         /// <returns>用于发送临时会话的<see cref="HttpRequestMessage"/></returns>
-        public virtual HttpRequestMessage SendToGroupMember(long userQQ, long groupId)
+        public virtual HttpRequestMessage SendToTemporarySession(long userQQ, long groupId)
         {
             this.SendToType = 3;
             this.ToUserUid = userQQ;

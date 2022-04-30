@@ -2,17 +2,16 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System;
+using System.IO;
+using System.Linq;
+using YukinoshitaBot.Data.Content;
+using YukinoshitaBot.Data.OpqApi;
+using YukinoshitaBot.Data.WebSocket;
+using YukinoshitaBot.Services;
+
 namespace YukinoshitaBot.Data.Event
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using YukinoshitaBot.Data.Content;
-    using YukinoshitaBot.Data.OpqApi;
-    using YukinoshitaBot.Data.WebSocket;
-    using YukinoshitaBot.Services;
-
     /// <summary>
     /// 消息基类，提供类型判断、回复等功能
     /// </summary>
@@ -60,7 +59,7 @@ namespace YukinoshitaBot.Data.Event
         /// <summary>
         /// OpqApi
         /// </summary>
-        public OpqApi? OpqApi { get; set; }
+        public OpqApiHandler? OpqApi { get; set; }
 
         /// <summary>
         /// 从<see cref="GroupMessage"/>创建Message
@@ -194,7 +193,7 @@ namespace YukinoshitaBot.Data.Event
             {
                 var sender = new SenderInfo(rawMessage.FromUin, rawMessage.GroupID);
                 var rawContent = rawMessage.ParseContent<FriendMixtureContent>();
-                if (rawContent?.FriendPic is List<PictureInfo>)
+                if (rawContent?.FriendPic is not null)
                 {
                     return new PictureMessage(sender, from pic in rawContent.FriendPic select pic.Url, rawContent.Content ?? string.Empty);
                 }
@@ -221,9 +220,9 @@ namespace YukinoshitaBot.Data.Event
         {
             var request = this.SenderInfo.SenderType switch
             {
-                SenderType.Friend => resp.SendToFriend(this.SenderInfo.FromQQ ?? default),
+                SenderType.Friend => resp.SendToFriend(this.SenderInfo.FromQQ),
                 SenderType.Group => resp.SendToGroup(this.SenderInfo.FromGroupId ?? default),
-                SenderType.TempSession => resp.SendToGroupMember(this.SenderInfo.FromQQ ?? default, this.SenderInfo.FromGroupId ?? default),
+                SenderType.TempSession => resp.SendToTemporarySession(this.SenderInfo.FromQQ, this.SenderInfo.FromGroupId ?? default),
                 _ => throw new NotImplementedException()
             };
 
@@ -234,21 +233,21 @@ namespace YukinoshitaBot.Data.Event
         /// 返回文本消息
         /// </summary>
         /// <param name="msg">需要发送的文本</param>
-        public void ReplyText(string msg) 
+        public void ReplyText(string msg)
             => Reply(new TextMessageRequest(msg));
 
         /// <summary>
         /// 返回图片消息
         /// </summary>
         /// <param name="base64EncodedImage">base64图片</param>
-        public void ReplyPicture(string base64EncodedImage) 
+        public void ReplyPicture(string base64EncodedImage)
             => Reply(new PictureMessageRequest(base64EncodedImage));
 
         /// <summary>
         /// 返回图片消息
         /// </summary>
         /// <param name="picUri">图片UR</param>
-        public void ReplyPicture(Uri picUri) 
+        public void ReplyPicture(Uri picUri)
             => Reply(new PictureMessageRequest(picUri));
 
         /// <summary>

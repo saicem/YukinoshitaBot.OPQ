@@ -2,10 +2,10 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System.Text.Json.Serialization;
+
 namespace YukinoshitaBot.Data.Content
 {
-    using System.Text.Json.Serialization;
-
     public record QQUser
     {
         /// <summary>

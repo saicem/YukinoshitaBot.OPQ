@@ -2,29 +2,29 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Concurrent;
+using System.Net.Http;
+
 namespace YukinoshitaBot.Services
 {
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.Logging;
-    using System;
-    using System.Collections.Concurrent;
-    using System.Net.Http;
-
     /// <summary>
     /// OPQ机器人Http队列
     /// </summary>
-    public class OpqApi
+    public class OpqApiHandler
     {
         private readonly ILogger logger;
         private readonly IConfiguration configuration;
         private readonly long loginQQ;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OpqApi"/> class.
+        /// Initializes a new instance of the <see cref="OpqApiHandler"/> class.
         /// </summary>
         /// <param name="logger">日志</param>
         /// <param name="configuration">配置</param>
-        public OpqApi(ILogger<OpqApi> logger, IConfiguration configuration)
+        public OpqApiHandler(ILogger<OpqApiHandler> logger, IConfiguration configuration)
         {
             this.logger = logger;
             this.configuration = configuration;

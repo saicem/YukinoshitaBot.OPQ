@@ -2,11 +2,10 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using YukinoshitaBot.Data.Event;
+
 namespace YukinoshitaBot.Services
 {
-    using System.Threading.Tasks;
-    using YukinoshitaBot.Data.Event;
-
     /// <summary>
     /// 消息处理器
     /// </summary>
@@ -35,5 +34,17 @@ namespace YukinoshitaBot.Services
         /// </summary>
         /// <param name="msg">消息</param>
         void OnFriendPictureMsgRecieved(PictureMessage msg);
+
+        /// <summary>
+        /// 临时会话文本消息处理
+        /// </summary>
+        /// <param name="msg">消息</param>
+        void OnTemporaryTextMsgRecieved(TextMessage msg);
+
+        /// <summary>
+        /// 临时会话图片消息处理
+        /// </summary>
+        /// <param name="msg">消息</param>
+        void OnTemporaryPictureMsgRecieved(PictureMessage msg);
     }
 }

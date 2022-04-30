@@ -2,12 +2,12 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System.Net.Http;
+using System.Threading.Tasks;
+using YukinoshitaBot.Services;
+
 namespace YukinoshitaBot.Extensions
 {
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using YukinoshitaBot.Services;
-
     /// <summary>
     /// <see cref="HttpRequestMessage"/>的拓展
     /// </summary>
@@ -18,7 +18,7 @@ namespace YukinoshitaBot.Extensions
         /// </summary>
         /// <param name="httpRequest">Http请求</param>
         /// <param name="opqApi">OPQ接口对象</param>
-        public static void AddToQueue(this HttpRequestMessage httpRequest, OpqApi opqApi)
+        public static void AddToQueue(this HttpRequestMessage httpRequest, OpqApiHandler opqApi)
         {
             opqApi.AddRequest(httpRequest);
         }

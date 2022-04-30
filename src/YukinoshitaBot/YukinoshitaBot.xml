@@ -4,105 +4,70 @@
         <name>YukinoshitaBot</name>
     </assembly>
     <members>
-        <member name="T:YukinoshitaBot.Data.Attributes.CmdRouteAttribute">
+        <member name="F:YukinoshitaBot.Data.Attributes.MatchSource.FrientText">
             <summary>
-            [CmdRoute("测试{requsite}{option?}{key:append}")] <br/>
-            {key}  ->  (?&lt;key&gt;.+?)
+            好友文本消息
             </summary>
         </member>
-        <member name="M:YukinoshitaBot.Data.Attributes.CmdRouteAttribute.BuildCmdRegex(System.Collections.Generic.Queue{YukinoshitaBot.Data.Attributes.CmdRouteAttribute.CmdUnit})">
+        <member name="F:YukinoshitaBot.Data.Attributes.MatchSource.GroupText">
             <summary>
-            构建用于命令匹配的正则表达式
-            </summary>
-            <param name="queue">命令单元列表</param>
-            <returns></returns>
-        </member>
-        <member name="T:YukinoshitaBot.Data.Attributes.CmdRouteAttribute.CmdUnit">
-            <summary>
-            命令单元
+            群组文本消息
             </summary>
         </member>
-        <member name="T:YukinoshitaBot.Data.Attributes.CmdRouteAttribute.CmdType">
+        <member name="F:YukinoshitaBot.Data.Attributes.MatchSource.TempText">
             <summary>
-            命令单元类型
+            临时会话文本消息
             </summary>
         </member>
-        <member name="T:YukinoshitaBot.Data.Attributes.HandleMode">
+        <member name="F:YukinoshitaBot.Data.Attributes.MatchSource.FriendPic">
             <summary>
-            处理方式
+            好友图片消息
             </summary>
         </member>
-        <member name="F:YukinoshitaBot.Data.Attributes.HandleMode.Break">
+        <member name="F:YukinoshitaBot.Data.Attributes.MatchSource.GroupPic">
             <summary>
-            本方法处理完毕后中断处理链
+            群组图片消息
             </summary>
         </member>
-        <member name="F:YukinoshitaBot.Data.Attributes.HandleMode.Pass">
+        <member name="F:YukinoshitaBot.Data.Attributes.MatchSource.TempPic">
             <summary>
-            本方法处理完毕后继续将请求向之后的处理者传递
+            临时会话图片消息
             </summary>
         </member>
-        <member name="T:YukinoshitaBot.Data.Attributes.RegexRouteAttribute">
+        <member name="F:YukinoshitaBot.Data.Attributes.MatchSource.FriendAny">
             <summary>
-            使用正则进行匹配
+            好友的任意消息
             </summary>
         </member>
-        <member name="T:YukinoshitaBot.Data.Attributes.StartRouteAttribute">
+        <member name="F:YukinoshitaBot.Data.Attributes.MatchSource.GroupAny">
             <summary>
-            当输入的指令以设置的命令为起始时匹配
-            Command = "Hello"
-            "Hello" 匹配
-            "Hello world" 匹配
+            群组的任意消息
             </summary>
         </member>
-        <member name="T:YukinoshitaBot.Data.Attributes.StrictRouteAttribute">
+        <member name="F:YukinoshitaBot.Data.Attributes.MatchSource.TempAny">
             <summary>
-            当输入的指令与设置指令完全一致时才匹配
-            Command = "Hello"
-            "Hello" 匹配
-            "Hello world" 不匹配
+            临时会话的任意消息
             </summary>
         </member>
-        <member name="T:YukinoshitaBot.Data.Attributes.YukinoRouteAttribute">
+        <member name="F:YukinoshitaBot.Data.Attributes.MatchSource.AnyText">
             <summary>
-            定义为YukinoshitaController
+            任意文本消息
             </summary>
         </member>
-        <member name="P:YukinoshitaBot.Data.Attributes.YukinoRouteAttribute.Command">
+        <member name="F:YukinoshitaBot.Data.Attributes.MatchSource.AnyPic">
             <summary>
-            匹配的指令
+            任意图片消息
             </summary>
         </member>
-        <member name="P:YukinoshitaBot.Data.Attributes.YukinoRouteAttribute.Priority">
+        <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaControllerAttribute.TriggerWord">
             <summary>
-            优先级，越小优先级越高
+            触发会话的关键词
             </summary>
         </member>
-        <member name="P:YukinoshitaBot.Data.Attributes.YukinoRouteAttribute.Mode">
+        <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaControllerAttribute.BeginHandleId">
             <summary>
-            处理模式
+            当会话触发后启动的处理方法
             </summary>
-        </member>
-        <member name="P:YukinoshitaBot.Data.Attributes.YukinoRouteAttribute.MaxLength">
-            <summary>
-            超过则忽略此消息
-            </summary>
-        </member>
-        <member name="M:YukinoshitaBot.Data.Attributes.YukinoRouteAttribute.TryMatch(System.String,System.Collections.Generic.Dictionary{System.String,System.String}@)">
-            <summary>
-            检验输入指令是否匹配控制器
-            </summary>
-            <param name="msg">输入的指令</param>
-            <param name="matchPairs">得到的匹配键值对</param>
-            <returns></returns>
-        </member>
-        <member name="M:YukinoshitaBot.Data.Attributes.YukinoRouteAttribute.CheckLength(System.String)">
-            <summary>
-            检验输入指令是否符合
-            排除空字符串和超长字符串
-            </summary>
-            <param name="content">输入指令</param>
-            <returns></returns>
         </member>
         <member name="T:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo">
             <summary>
@@ -115,57 +80,37 @@
             </summary>
             <param name="controllerType">控制器类型</param>
         </member>
-        <member name="M:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.TryGetHandlers(YukinoshitaBot.Data.Event.MessageType,YukinoshitaBot.Data.Event.SenderType,System.Collections.Generic.List{System.Reflection.MethodInfo}@)">
-            <summary>
-            获取处理对应消息类型的方法
-            </summary>
-            <param name="msgType">消息类型</param>
-            <param name="methods">方法</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException"></exception>
-        </member>
         <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.ControllerType">
             <summary>
             控制器类型
             </summary>
         </member>
-        <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.YukinoRouteAttribute">
+        <member name="F:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.handlerInfos">
+            <summary>
+            处理方法
+            </summary>
+        </member>
+        <member name="M:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.GetHandlerInfo(System.String)">
+            <summary>
+            获取对应 Id 的 handler
+            </summary>
+            <param name="handlerId"></param>
+            <returns></returns>
+        </member>
+        <member name="F:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.ControllerAttribute">
             <summary>
             控制器属性
             </summary>
         </member>
-        <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.FriendTextHandlers">
+        <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaHandlerAttribute.Id">
             <summary>
-            好友文本消息处理的方法
+            属性辨识符
             </summary>
         </member>
-        <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.FriendImageHandlers">
+        <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaHandlerAttribute.Command">
             <summary>
-            好友图片消息的处理方法
+            匹配的指令
             </summary>
-        </member>
-        <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.GroupTextHandlers">
-            <summary>
-            群组文本消息的处理方法
-            </summary>
-        </member>
-        <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.GroupImageHandlers">
-            <summary>
-            群组图片消息的处理方法
-            </summary>
-        </member>
-        <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.TempSessionTextHandlers">
-            <summary>
-            临时会话文本消息的处理方法
-            </summary>
-        </member>
-        <member name="P:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.TempSessionImageHandlers">
-            <summary>
-            临时会话图片消息的处理方法
-            </summary>
-        </member>
-        <member name="M:YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo.CompareTo(YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo)">
-            <inheritdoc/>
         </member>
         <member name="T:YukinoshitaBot.Data.Content.FriendMixtureContent">
             <summary>
@@ -292,84 +237,134 @@
             QQ号
             </summary>
         </member>
-        <member name="T:YukinoshitaBot.Data.Controller.BotControllerBase">
+        <member name="P:YukinoshitaBot.Data.Context.BotAction.Action">
+            <summary>
+            对话的处理状态
+            </summary>
+        </member>
+        <member name="P:YukinoshitaBot.Data.Context.BotAction.Message">
+            <summary>
+            返回给消息源的消息
+            </summary>
+        </member>
+        <member name="P:YukinoshitaBot.Data.Context.BotAction.NextStep">
+            <summary>
+            当 ActionType 为 Continue 时的下一个处理方法标识
+            </summary>
+        </member>
+        <member name="F:YukinoshitaBot.Data.Context.DialogAction.NotMatch">
+            <summary>
+            未能匹配当前对话
+            </summary>
+        </member>
+        <member name="F:YukinoshitaBot.Data.Context.DialogAction.ValidError">
+            <summary>
+            参数验证失败
+            </summary>
+        </member>
+        <member name="F:YukinoshitaBot.Data.Context.DialogAction.Continue">
+            <summary>
+            继续进行当前对话
+            </summary>
+        </member>
+        <member name="F:YukinoshitaBot.Data.Context.DialogAction.Terminate">
+            <summary>
+            结束当前对话
+            </summary>
+        </member>
+        <member name="P:YukinoshitaBot.Data.Context.Dialog.Id">
+            <summary>
+            对话 ID, 推荐使用 QQ 号或者群号辨别。
+            </summary>
+        </member>
+        <member name="P:YukinoshitaBot.Data.Context.Dialog.IsReady">
+            <summary>
+            对话是否收到了消息
+            </summary>
+        </member>
+        <member name="F:YukinoshitaBot.Data.Context.Dialog.controller">
+            <summary>
+            用于该对话的控制器
+            </summary>
+        </member>
+        <member name="P:YukinoshitaBot.Data.Context.Dialog.Method">
+            <summary>
+            下一个处理用的方法
+            </summary>
+        </member>
+        <member name="P:YukinoshitaBot.Data.Context.Dialog.HandlerId">
+            <summary>
+            下一个处理方法的 ID
+            </summary>
+        </member>
+        <member name="P:YukinoshitaBot.Data.Context.Dialog.StartTime">
+            <summary>
+            对话的开始时间
+            </summary>
+        </member>
+        <member name="P:YukinoshitaBot.Data.Context.Dialog.WaitTime">
+            <summary>
+            对话等待的时长
+            </summary>
+        </member>
+        <member name="P:YukinoshitaBot.Data.Context.Dialog.EndTime">
+            <summary>
+            对话结束的时间
+            </summary>
+        </member>
+        <member name="P:YukinoshitaBot.Data.Context.Dialog.TextMessage">
+            <summary>
+            对话消息源的文本消息
+            </summary>
+        </member>
+        <member name="M:YukinoshitaBot.Data.Context.Dialog.RefreshEndTime">
+            <summary>
+            刷新对话到期时间
+            </summary>
+        </member>
+        <member name="M:YukinoshitaBot.Data.Context.Dialog.HandleAsync">
+            <summary>
+            尝试处理文本
+            </summary>
+        </member>
+        <member name="T:YukinoshitaBot.Data.Controller.YukinoshitaControllerBase">
             <summary>
             机器人消息类
             </summary>
         </member>
-        <member name="P:YukinoshitaBot.Data.Controller.BotControllerBase.Message">
+        <member name="P:YukinoshitaBot.Data.Controller.YukinoshitaControllerBase.Message">
             <summary>
             接收到的消息
             </summary>
         </member>
-        <member name="P:YukinoshitaBot.Data.Controller.BotControllerBase.SenderInfo">
-            <summary>
-            消息发送者的信息
-            </summary>
-        </member>
-        <member name="P:YukinoshitaBot.Data.Controller.BotControllerBase.MessageType">
-            <summary>
-            消息类型
-            </summary>
-        </member>
-        <member name="P:YukinoshitaBot.Data.Controller.BotControllerBase.SenderType">
-            <summary>
-            发送者类型
-            </summary>
-        </member>
-        <member name="P:YukinoshitaBot.Data.Controller.BotControllerBase.FromQQ">
-            <summary>
-            消息来源用户QQ号
-            </summary>
-        </member>
-        <member name="P:YukinoshitaBot.Data.Controller.BotControllerBase.FromGroupId">
-            <summary>
-            消息来源群号
-            </summary>
-        </member>
-        <member name="M:YukinoshitaBot.Data.Controller.BotControllerBase.ReplyTextMsg(System.String)">
-            <summary>
-            返回文本消息
-            </summary>
-            <param name="msg">需要发送的文本</param>
-        </member>
-        <member name="M:YukinoshitaBot.Data.Controller.BotControllerBase.ReplyPictureMsg(System.String)">
-            <summary>
-            返回图片消息
-            </summary>
-            <param name="base64EncodedImage">base64图片</param>
-        </member>
-        <member name="M:YukinoshitaBot.Data.Controller.BotControllerBase.ReplyPictureMsg(System.Uri)">
-            <summary>
-            返回图片消息
-            </summary>
-            <param name="picUri">图片UR</param>
-        </member>
-        <member name="M:YukinoshitaBot.Data.Controller.BotControllerBase.ReplyPictureMsg(System.IO.FileInfo)">
-            <summary>
-            返回图片消息
-            </summary>
-            <param name="localPicture">本地图片文件</param>
-        </member>
-        <member name="P:YukinoshitaBot.Data.Controller.BotControllerBase.MatchPairs">
-            <summary>
-            匹配得到的参数键值对
-            </summary>
-        </member>
-        <member name="P:YukinoshitaBot.Data.Controller.BotControllerBase.ParamErrors">
+        <member name="P:YukinoshitaBot.Data.Controller.YukinoshitaControllerBase.ParamErrors">
             <summary>
             参数验证中的错误信息
             </summary>
         </member>
-        <member name="P:YukinoshitaBot.Data.Controller.BotControllerBase.IsValid">
+        <member name="P:YukinoshitaBot.Data.Controller.YukinoshitaControllerBase.IsValid">
             <summary>
             参数验证是否成功
             </summary>
         </member>
-        <member name="M:YukinoshitaBot.Data.Controller.BotControllerBase.OnValidationError">
+        <member name="M:YukinoshitaBot.Data.Controller.YukinoshitaControllerBase.OnValidationError">
             <summary>
             当参数验证失败时调用，重写以自定义参数验证失败时的处理逻辑。
             </summary>
+        </member>
+        <member name="M:YukinoshitaBot.Data.Controller.YukinoshitaControllerBase.Continue(System.String,System.String)">
+            <summary>
+            对话继续进行，且以指定的方法名作为下一个处理方法。
+            </summary>
+            <param name="message"><see cref="P:YukinoshitaBot.Data.Context.BotAction.Message"/></param>
+            <param name="nextStep"><see cref="P:YukinoshitaBot.Data.Context.BotAction.NextStep"/></param>
+        </member>
+        <member name="M:YukinoshitaBot.Data.Controller.YukinoshitaControllerBase.Terminate(System.String)">
+            <summary>
+            Terminate the dialog.
+            </summary>
+            <param name="message"><see cref="P:YukinoshitaBot.Data.Context.BotAction.Message"/></param>
+            <returns></returns>
         </member>
         <member name="T:YukinoshitaBot.Data.Event.AtInfo">
             <summary>
@@ -732,7 +727,7 @@
             <param name="groupId">好友QQ</param>
             <returns>用于发送群消息的<see cref="P:YukinoshitaBot.Data.OpqApi.MessageRequestBase.HttpRequestMessage"/></returns>
         </member>
-        <member name="M:YukinoshitaBot.Data.OpqApi.MessageRequestBase.SendToGroupMember(System.Int64,System.Int64)">
+        <member name="M:YukinoshitaBot.Data.OpqApi.MessageRequestBase.SendToTemporarySession(System.Int64,System.Int64)">
             <summary>
             发送到临时会话
             </summary>
@@ -791,7 +786,7 @@
         <member name="M:YukinoshitaBot.Data.OpqApi.PictureMessageRequest.SendToGroup(System.Int64)">
             <inheritdoc/>
         </member>
-        <member name="M:YukinoshitaBot.Data.OpqApi.PictureMessageRequest.SendToGroupMember(System.Int64,System.Int64)">
+        <member name="M:YukinoshitaBot.Data.OpqApi.PictureMessageRequest.SendToTemporarySession(System.Int64,System.Int64)">
             <inheritdoc/>
         </member>
         <member name="T:YukinoshitaBot.Data.OpqApi.TextMessageRequest">
@@ -811,8 +806,18 @@
         <member name="M:YukinoshitaBot.Data.OpqApi.TextMessageRequest.SendToGroup(System.Int64)">
             <inheritdoc/>
         </member>
-        <member name="M:YukinoshitaBot.Data.OpqApi.TextMessageRequest.SendToGroupMember(System.Int64,System.Int64)">
+        <member name="M:YukinoshitaBot.Data.OpqApi.TextMessageRequest.SendToTemporarySession(System.Int64,System.Int64)">
             <inheritdoc/>
+        </member>
+        <member name="F:YukinoshitaBot.Data.Option.WhenValidError.Silent">
+            <summary>
+            不返回任何错误消息
+            </summary>
+        </member>
+        <member name="F:YukinoshitaBot.Data.Option.WhenValidError.Default">
+            <summary>
+            返回错误消息
+            </summary>
         </member>
         <member name="T:YukinoshitaBot.Data.WebSocket.FriendMessage">
             <summary>
@@ -973,7 +978,7 @@
             <see cref="T:System.Net.Http.HttpRequestMessage"/>的拓展
             </summary>
         </member>
-        <member name="M:YukinoshitaBot.Extensions.HttpRequestMessageExtension.AddToQueue(System.Net.Http.HttpRequestMessage,YukinoshitaBot.Services.OpqApi)">
+        <member name="M:YukinoshitaBot.Extensions.HttpRequestMessageExtension.AddToQueue(System.Net.Http.HttpRequestMessage,YukinoshitaBot.Services.OpqApiHandler)">
             <summary>
             将请求添加到队列
             </summary>
@@ -1013,21 +1018,24 @@
             控制器容器
             </summary>
         </member>
-        <member name="M:YukinoshitaBot.Services.ControllerCollection.#ctor(System.IServiceProvider)">
+        <member name="M:YukinoshitaBot.Services.ControllerCollection.#ctor(System.IServiceProvider,System.Type[])">
             <summary>
             Initializes a new instance of the <see cref="T:YukinoshitaBot.Services.ControllerCollection"/> class.
             </summary>
         </member>
-        <member name="P:YukinoshitaBot.Services.ControllerCollection.ResolvedControllers">
+        <member name="F:YukinoshitaBot.Services.ControllerCollection.resolvedControllerDict">
             <summary>
             已解析的控制器
             </summary>
         </member>
-        <member name="M:YukinoshitaBot.Services.ControllerCollection.AddController(System.Type)">
+        <member name="M:YukinoshitaBot.Services.ControllerCollection.TryGetController(System.String,YukinoshitaBot.Data.Controller.YukinoshitaControllerBase@,YukinoshitaBot.Data.Attributes.YukinoshitaControllerInfo@)">
             <summary>
-            添加一个控制器
+            获取控制器
             </summary>
-            <param name="controllerType">控制器类型</param>
+            <param name="triggerWord">触发控制器的关键词</param>
+            <param name="controllerObj">控制器实体</param>
+            <param name="controllerInfo">控制器信息</param>
+            <returns></returns>
         </member>
         <member name="T:YukinoshitaBot.Services.IMessageHandler">
             <summary>
@@ -1058,12 +1066,60 @@
             </summary>
             <param name="msg">消息</param>
         </member>
+        <member name="M:YukinoshitaBot.Services.IMessageHandler.OnTemporaryTextMsgRecieved(YukinoshitaBot.Data.Event.TextMessage)">
+            <summary>
+            临时会话文本消息处理
+            </summary>
+            <param name="msg">消息</param>
+        </member>
+        <member name="M:YukinoshitaBot.Services.IMessageHandler.OnTemporaryPictureMsgRecieved(YukinoshitaBot.Data.Event.PictureMessage)">
+            <summary>
+            临时会话图片消息处理
+            </summary>
+            <param name="msg">消息</param>
+        </member>
+        <member name="T:YukinoshitaBot.Services.MessageHandler">
+            <summary>
+            实现控制器
+            </summary>
+        </member>
+        <member name="M:YukinoshitaBot.Services.MessageHandler.#ctor(YukinoshitaBot.Services.ControllerCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:YukinoshitaBot.Services.MessageHandler"/> class.
+            </summary>
+            <param name="controllerCollection">控制器容器</param>
+        </member>
+        <member name="M:YukinoshitaBot.Services.MessageHandler.OnFriendPictureMsgRecieved(YukinoshitaBot.Data.Event.PictureMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:YukinoshitaBot.Services.MessageHandler.OnFriendTextMsgRecieved(YukinoshitaBot.Data.Event.TextMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:YukinoshitaBot.Services.MessageHandler.OnGroupPictureMsgRecieved(YukinoshitaBot.Data.Event.PictureMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:YukinoshitaBot.Services.MessageHandler.OnGroupTextMsgRecieved(YukinoshitaBot.Data.Event.TextMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:YukinoshitaBot.Services.MessageHandler.OnTemporaryPictureMsgRecieved(YukinoshitaBot.Data.Event.PictureMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:YukinoshitaBot.Services.MessageHandler.OnTemporaryTextMsgRecieved(YukinoshitaBot.Data.Event.TextMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:YukinoshitaBot.Services.MessageHandler.OnTextMsgRecieved(YukinoshitaBot.Data.Event.TextMessage)">
+            <summary>
+            文本消息处理
+            </summary>
+            <param name="msg">文本消息</param>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
         <member name="T:YukinoshitaBot.Services.MessageQueueScanner">
             <summary>
             消息队列扫描线程
             </summary>
         </member>
-        <member name="M:YukinoshitaBot.Services.MessageQueueScanner.#ctor(Microsoft.Extensions.Logging.ILogger{YukinoshitaBot.Services.MessageQueueScanner},Microsoft.Extensions.Configuration.IConfiguration,YukinoshitaBot.Services.OpqApi)">
+        <member name="M:YukinoshitaBot.Services.MessageQueueScanner.#ctor(Microsoft.Extensions.Logging.ILogger{YukinoshitaBot.Services.MessageQueueScanner},Microsoft.Extensions.Configuration.IConfiguration,YukinoshitaBot.Services.OpqApiHandler)">
             <summary>
             Initializes a new instance of the <see cref="T:YukinoshitaBot.Services.MessageQueueScanner"/> class.
             </summary>
@@ -1077,65 +1133,35 @@
         <member name="M:YukinoshitaBot.Services.MessageQueueScanner.ExecuteAsync(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="T:YukinoshitaBot.Services.OpqApi">
+        <member name="T:YukinoshitaBot.Services.OpqApiHandler">
             <summary>
             OPQ机器人Http队列
             </summary>
         </member>
-        <member name="M:YukinoshitaBot.Services.OpqApi.#ctor(Microsoft.Extensions.Logging.ILogger{YukinoshitaBot.Services.OpqApi},Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:YukinoshitaBot.Services.OpqApiHandler.#ctor(Microsoft.Extensions.Logging.ILogger{YukinoshitaBot.Services.OpqApiHandler},Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
-            Initializes a new instance of the <see cref="T:YukinoshitaBot.Services.OpqApi"/> class.
+            Initializes a new instance of the <see cref="T:YukinoshitaBot.Services.OpqApiHandler"/> class.
             </summary>
             <param name="logger">日志</param>
             <param name="configuration">配置</param>
         </member>
-        <member name="P:YukinoshitaBot.Services.OpqApi.MessageQueue">
+        <member name="P:YukinoshitaBot.Services.OpqApiHandler.MessageQueue">
             <summary>
             存放待发送的Http请求
             </summary>
         </member>
-        <member name="M:YukinoshitaBot.Services.OpqApi.AddRequest(System.Net.Http.HttpRequestMessage)">
+        <member name="M:YukinoshitaBot.Services.OpqApiHandler.AddRequest(System.Net.Http.HttpRequestMessage)">
             <summary>
             向队列中添加一个请求
             </summary>
             <param name="request">要添加的请求</param>
-        </member>
-        <member name="T:YukinoshitaBot.Services.YukinoshitaController">
-            <summary>
-            实现控制器
-            </summary>
-        </member>
-        <member name="M:YukinoshitaBot.Services.YukinoshitaController.#ctor(YukinoshitaBot.Services.ControllerCollection)">
-            <summary>
-            Initializes a new instance of the <see cref="T:YukinoshitaBot.Services.YukinoshitaController"/> class.
-            </summary>
-            <param name="controllerCollection">控制器容器</param>
-        </member>
-        <member name="M:YukinoshitaBot.Services.YukinoshitaController.OnFriendPictureMsgRecieved(YukinoshitaBot.Data.Event.PictureMessage)">
-            <inheritdoc/>
-        </member>
-        <member name="M:YukinoshitaBot.Services.YukinoshitaController.OnFriendTextMsgRecieved(YukinoshitaBot.Data.Event.TextMessage)">
-            <inheritdoc/>
-        </member>
-        <member name="M:YukinoshitaBot.Services.YukinoshitaController.OnGroupPictureMsgRecieved(YukinoshitaBot.Data.Event.PictureMessage)">
-            <inheritdoc/>
-        </member>
-        <member name="M:YukinoshitaBot.Services.YukinoshitaController.OnGroupTextMsgRecieved(YukinoshitaBot.Data.Event.TextMessage)">
-            <inheritdoc/>
-        </member>
-        <member name="M:YukinoshitaBot.Services.YukinoshitaController.OnTextMsgRecieved(YukinoshitaBot.Data.Event.TextMessage)">
-            <summary>
-            文本消息处理
-            </summary>
-            <param name="msg">文本消息</param>
-            <exception cref="T:System.NullReferenceException"></exception>
         </member>
         <member name="T:YukinoshitaBot.YukinoshitaWorker">
             <summary>
             工作线程
             </summary>
         </member>
-        <member name="M:YukinoshitaBot.YukinoshitaWorker.#ctor(Microsoft.Extensions.Logging.ILogger{YukinoshitaBot.YukinoshitaWorker},Microsoft.Extensions.Configuration.IConfiguration,YukinoshitaBot.Services.OpqApi,YukinoshitaBot.Services.IMessageHandler)">
+        <member name="M:YukinoshitaBot.YukinoshitaWorker.#ctor(Microsoft.Extensions.Logging.ILogger{YukinoshitaBot.YukinoshitaWorker},Microsoft.Extensions.Configuration.IConfiguration,YukinoshitaBot.Services.OpqApiHandler,YukinoshitaBot.Services.IMessageHandler)">
             <summary>
             Initializes a new instance of the <see cref="T:YukinoshitaBot.YukinoshitaWorker"/> class.
             </summary>

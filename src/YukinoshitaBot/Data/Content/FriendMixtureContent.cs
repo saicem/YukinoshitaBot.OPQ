@@ -2,12 +2,12 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+using YukinoshitaBot.Data.WebSocket;
+
 namespace YukinoshitaBot.Data.Content
 {
-    using System.Collections.Generic;
-    using System.Text.Json.Serialization;
-    using YukinoshitaBot.Data.WebSocket;
-
     /// <summary>
     /// 好友图文消息
     /// </summary>

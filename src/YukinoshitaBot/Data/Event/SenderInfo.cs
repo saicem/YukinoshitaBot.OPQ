@@ -65,7 +65,7 @@ namespace YukinoshitaBot.Data.Event
         /// <summary>
         /// 消息来源用户QQ号
         /// </summary>
-        public long? FromQQ { get; set; }
+        public long FromQQ { get; set; }
 
         /// <summary>
         /// 消息来源用户群昵称，仅群消息有效

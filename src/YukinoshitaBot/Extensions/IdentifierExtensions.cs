@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace YukinoshitaBot.Extensions
 {
@@ -30,32 +27,92 @@ namespace YukinoshitaBot.Extensions
                                                      IDENTIFIER_PART_CHARACTERS + ")*";
 
         // C# keywords: http://msdn.microsoft.com/en-us/library/x53a06bb(v=vs.71).aspx
-        private static readonly HashSet<string> _keywords = new HashSet<string>
-    {
-        "__arglist",    "__makeref",    "__reftype",    "__refvalue",
-        "abstract",     "as",           "base",         "bool",
-        "break",        "byte",         "case",         "catch",
-        "char",         "checked",      "class",        "const",
-        "continue",     "decimal",      "default",      "delegate",
-        "do",           "double",       "else",         "enum",
-        "event",        "explicit",     "extern",       "false",
-        "finally",      "fixed",        "float",        "for",
-        "foreach",      "goto",         "if",           "implicit",
-        "in",           "int",          "interface",    "internal",
-        "is",           "lock",         "long",         "namespace",
-        "new",          "null",         "object",       "operator",
-        "out",          "override",     "params",       "private",
-        "protected",    "public",       "readonly",     "ref",
-        "return",       "sbyte",        "sealed",       "short",
-        "sizeof",       "stackalloc",   "static",       "string",
-        "struct",       "switch",       "this",         "throw",
-        "true",         "try",          "typeof",       "uint",
-        "ulong",        "unchecked",    "unsafe",       "ushort",
-        "using",        "virtual",      "volatile",     "void",
-        "while"
-    };
+        private static readonly HashSet<string> _keywords = new()
+        {
+            "__arglist",
+            "__makeref",
+            "__reftype",
+            "__refvalue",
+            "abstract",
+            "as",
+            "base",
+            "bool",
+            "break",
+            "byte",
+            "case",
+            "catch",
+            "char",
+            "checked",
+            "class",
+            "const",
+            "continue",
+            "decimal",
+            "default",
+            "delegate",
+            "do",
+            "double",
+            "else",
+            "enum",
+            "event",
+            "explicit",
+            "extern",
+            "false",
+            "finally",
+            "fixed",
+            "float",
+            "for",
+            "foreach",
+            "goto",
+            "if",
+            "implicit",
+            "in",
+            "int",
+            "interface",
+            "internal",
+            "is",
+            "lock",
+            "long",
+            "namespace",
+            "new",
+            "null",
+            "object",
+            "operator",
+            "out",
+            "override",
+            "params",
+            "private",
+            "protected",
+            "public",
+            "readonly",
+            "ref",
+            "return",
+            "sbyte",
+            "sealed",
+            "short",
+            "sizeof",
+            "stackalloc",
+            "static",
+            "string",
+            "struct",
+            "switch",
+            "this",
+            "throw",
+            "true",
+            "try",
+            "typeof",
+            "uint",
+            "ulong",
+            "unchecked",
+            "unsafe",
+            "ushort",
+            "using",
+            "virtual",
+            "volatile",
+            "void",
+            "while"
+        };
 
-        private static readonly Regex _validIdentifierRegex = new Regex("^" + IDENTIFIER_OR_KEYWORD + "$", RegexOptions.Compiled);
+        private static readonly Regex _validIdentifierRegex = new("^" + IDENTIFIER_OR_KEYWORD + "$", RegexOptions.Compiled);
 
         public static bool IsValidIdentifier(this string identifier)
         {

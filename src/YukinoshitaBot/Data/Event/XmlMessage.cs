@@ -2,10 +2,10 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System.Xml.Linq;
+
 namespace YukinoshitaBot.Data.Event
 {
-    using System.Xml.Linq;
-
     /// <summary>
     /// XML消息
     /// </summary>

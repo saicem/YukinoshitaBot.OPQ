@@ -2,16 +2,16 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace YukinoshitaBot.Services
 {
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.Hosting;
-    using Microsoft.Extensions.Logging;
-    using System;
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     /// <summary>
     /// 消息队列扫描线程
     /// </summary>
@@ -19,7 +19,7 @@ namespace YukinoshitaBot.Services
     {
         private readonly ILogger logger;
         private readonly IConfiguration configuration;
-        private readonly OpqApi opqApi;
+        private readonly OpqApiHandler opqApi;
         private readonly HttpClient httpClient;
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace YukinoshitaBot.Services
         /// <param name="logger">日志</param>
         /// <param name="configuration">配置</param>
         /// <param name="opqApi">OPQ服务</param>
-        public MessageQueueScanner(ILogger<MessageQueueScanner> logger, IConfiguration configuration, OpqApi opqApi)
+        public MessageQueueScanner(ILogger<MessageQueueScanner> logger, IConfiguration configuration, OpqApiHandler opqApi)
         {
             this.logger = logger;
             this.configuration = configuration;

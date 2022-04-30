@@ -2,15 +2,16 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
+using System.Reflection;
+using YukinoshitaBot.Data.Attributes;
+using YukinoshitaBot.Data.Controller;
+using YukinoshitaBot.Services;
+
 namespace YukinoshitaBot.Extensions
 {
-    using Microsoft.Extensions.DependencyInjection;
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using YukinoshitaBot.Data.Attributes;
-    using YukinoshitaBot.Services;
-
     /// <summary>
     /// 依赖注入拓展
     /// </summary>
@@ -25,7 +26,7 @@ namespace YukinoshitaBot.Extensions
         public static IServiceCollection AddYukinoshitaBot<MessageHandlerType>(this IServiceCollection services)
             where MessageHandlerType : class, IMessageHandler
         {
-            services.AddSingleton<OpqApi>();
+            services.AddSingleton<OpqApiHandler>();
             services.AddHostedService<MessageQueueScanner>();
             services.AddScoped<IMessageHandler, MessageHandlerType>();
             services.AddHostedService<YukinoshitaWorker>();
@@ -40,36 +41,25 @@ namespace YukinoshitaBot.Extensions
         /// <returns>链式调用服务容器</returns>
         public static IServiceCollection AddYukinoshitaBot(this IServiceCollection services)
         {
-            services.AddSingleton<OpqApi>();
+            services.AddSingleton<OpqApiHandler>();
             services.AddMemoryCache();
 
-            // 扫描当前程序集，添加所有带有YukinoshitaControllerAttribute的服务作为控制器
+            // 扫描当前程序集，添加所有带有 YukinoshitaControllerAttribute 并且继承于 YukinoshitaControllerBase 的服务作为控制器
             var ass = Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
-            var controllerTypes = new List<Type>();
-            foreach (var type in ass.GetTypes())
+            var controllerTypes = (from type in ass.GetTypes()
+                                   where type.GetCustomAttribute<YukinoshitaControllerAttribute>() is not null
+                                   where type.BaseType == typeof(YukinoshitaControllerBase)
+                                   select type).ToArray();
+
+            foreach (var type in controllerTypes)
             {
-                if (type.GetCustomAttribute<YukinoRouteAttribute>() is YukinoRouteAttribute)
-                {
-                    services.AddTransient(type);
-                    controllerTypes.Add(type);
-                }
+                services.AddTransient(type);
             }
 
             // ControllerCollection维护所有Controller的类型信息
-            services.AddSingleton(services =>
-            {
-                var controllerCollection = new ControllerCollection(services);
+            services.AddSingleton(services => new ControllerCollection(services, controllerTypes));
 
-                // 将以注入的Controller添加进ControllerCollection
-                foreach (var type in controllerTypes)
-                {
-                    controllerCollection.AddController(type);
-                }
-
-                return controllerCollection;
-            });
-
-            services.AddSingleton<IMessageHandler, YukinoshitaController>();
+            services.AddSingleton<IMessageHandler, MessageHandler>();
 
             services.AddHostedService<MessageQueueScanner>();
             services.AddHostedService<YukinoshitaWorker>();

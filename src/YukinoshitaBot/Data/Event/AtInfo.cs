@@ -2,10 +2,10 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System.Collections.Generic;
+
 namespace YukinoshitaBot.Data.Event
 {
-    using System.Collections.Generic;
-
     /// <summary>
     /// At信息
     /// </summary>

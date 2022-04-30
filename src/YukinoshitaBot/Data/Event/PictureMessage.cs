@@ -2,11 +2,11 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace YukinoshitaBot.Data.Event
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     /// <summary>
     /// 图片消息
     /// </summary>

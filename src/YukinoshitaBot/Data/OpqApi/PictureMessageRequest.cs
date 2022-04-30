@@ -2,15 +2,15 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System;
+using System.IO;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace YukinoshitaBot.Data.OpqApi
 {
-    using System;
-    using System.IO;
-    using System.Net.Http;
-    using System.Text;
-    using System.Text.Json;
-    using System.Text.Json.Serialization;
-
     /// <summary>
     /// 图片消息
     /// </summary>
@@ -96,9 +96,9 @@ namespace YukinoshitaBot.Data.OpqApi
         }
 
         /// <inheritdoc/>
-        public override HttpRequestMessage SendToGroupMember(long userQQ, long groupId)
+        public override HttpRequestMessage SendToTemporarySession(long userQQ, long groupId)
         {
-            var request = base.SendToGroupMember(userQQ, groupId);
+            var request = base.SendToTemporarySession(userQQ, groupId);
             request.Content = new StringContent(JsonSerializer.Serialize(this, typeof(PictureMessageRequest)), Encoding.UTF8, "application/json");
 
             return request;

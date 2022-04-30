@@ -2,10 +2,10 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System.Text.Json;
+
 namespace YukinoshitaBot.Data.WebSocket
 {
-    using System.Text.Json;
-
     /// <summary>
     /// 消息基类，提供消息解析功能
     /// </summary>
@@ -30,7 +30,7 @@ namespace YukinoshitaBot.Data.WebSocket
         {
             if (string.IsNullOrEmpty(this.Content))
             {
-                return new ();
+                return new();
             }
 
             return JsonSerializer.Deserialize<T>(this.Content) ?? new T();
